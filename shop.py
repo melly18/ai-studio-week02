@@ -21,3 +21,14 @@ class Order:
         self.order_id = order_id
         self.customer = customer
         self.items = items
+
+    def total_price(self):
+        total = sum(price for _, price in self.items)
+        return int(total * (1 - self.customer.get_discount_rate()))
+
+    def add_item(self, name, price):
+        self.items.append((name, price))
+
+    def pay(self):
+        price = self.total_price()
+        self.customer.add_points(price)
