@@ -32,3 +32,25 @@ class Order:
     def pay(self):
         price = self.total_price()
         self.customer.add_points(price)
+
+
+c1 = Customer("이서강")
+c2 = Customer("김강서", "vip")
+
+o1 = Order("PA-405", c1, [("아메리카노", 3800)])
+o2 = Order("AS-414", c2, [("딸기 홀케이크", 45000), ("망고 스무디", 8700)])
+o3 = Order("MA-315", c1, [("카페 모카", 4700), ("아메리카노", 3800), ("샌드위치", 7100)])
+
+o2.add_item("초코 마시멜로 쿠키", 5600)
+
+print(f"{o1.order_id}: {o1.total_price():,}원 결제 필요")
+o1.pay()
+print(o1.customer.summary())
+
+print(f"{o2.order_id}: {o2.total_price():,}원 결제 필요")
+o2.pay()
+print(o2.customer.summary())
+
+print(f"{o3.order_id}: {o3.total_price():,}원 결제 필요")
+o3.pay()
+print(o3.customer.summary())
